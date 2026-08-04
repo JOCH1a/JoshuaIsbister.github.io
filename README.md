@@ -2,7 +2,7 @@
 
 Personal portfolio site showcasing mechanical and mechatronic engineering projects. Built as static HTML/CSS — no build step, no dependencies beyond a couple of Google Fonts and a CDN QR code library.
 
-Live site: https://joshuaisbister.github.io
+Live site: https://joch1a.github.io/JoshuaIsbister.github.io/
 
 Branches
 main — development branch. New pages, edits, and work-in-progress content go here first.
