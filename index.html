@@ -390,6 +390,18 @@
     border-top:1px dashed var(--grid-line-strong);
   }
   .cap li:first-child{border-top:none;}
+
+  .cap-wide{
+    margin-top:1px;
+    border:1px solid var(--line);
+  }
+  .cap-skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:0 32px;
+  }
+  .cap-skills-grid li{border-top:none !important;}
+  @media (max-width:700px){ .cap-skills-grid{grid-template-columns:1fr;} }
   .cap-skills li{
     display:flex;
     flex-direction:column;
@@ -488,7 +500,7 @@
     <nav class="crumbline">
       <a href="#about">About</a>
       <a href="#work">Projects</a>
-      <a href="#capabilities">Skill Set</a>
+      <a href="#capabilities">Capabilities</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -702,18 +714,16 @@
     <div class="section-head">
       <div>
         <div class="section-num">§ 02 — TOOLKIT</div>
-        <h2 class="section-title">Skill Set</h2>
+        <h2 class="section-title">Capabilities</h2>
       </div>
     </div>
     <div class="cap-list">
       <div class="cap">
-        <div class="cap-h">DESIGN &amp; ANALYSIS</div>
+        <div class="cap-h">CAD &amp; ANALYSIS</div>
         <ul>
           <li>SolidWorks</li>
           <li>Finite Element Analysis</li>
           <li>Topology Optimisation</li>
-          <li>Altium</li>
-          <li>LTspice</li>
         </ul>
       </div>
       <div class="cap">
@@ -723,6 +733,13 @@
           <li>Sheet metal fabrication</li>
           <li>Welding</li>
           <li>Composite manufacturing</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <div class="cap-h">ELECTRICAL &amp; PCB</div>
+        <ul>
+          <li>Altium</li>
+          <li>LTspice</li>
           <li>Hand soldering &amp; hot plating</li>
           <li>PCB rework (SOIC, TSSOP, QFP, QFN)</li>
         </ul>
@@ -738,15 +755,16 @@
           <li>MoTeC i2 Pro / VS Code</li>
         </ul>
       </div>
-      <div class="cap">
-        <div class="cap-h">TRANSFERRABLE SKILLS</div>
-        <ul class="cap-skills">
-          <li><span class="skill-name">Leadership &amp; Management</span><span class="skill-desc">Leading multidisciplinary engineering teams, delegating technical work and coordinating project delivery.</span></li>
-          <li><span class="skill-name">Teamwork</span><span class="skill-desc">Collaborating effectively within multidisciplinary teams across university projects and UTS Motorsports.</span></li>
-          <li><span class="skill-name">Systems Thinking</span><span class="skill-desc">Balancing performance, manufacturability, cost and subsystem integration throughout engineering design.</span></li>
-          <li><span class="skill-name">Initiative</span><span class="skill-desc">Proactively improving designs, documentation and engineering processes while owning technical tasks.</span></li>
-        </ul>
-      </div>
+    </div>
+
+    <div class="cap cap-wide">
+      <div class="cap-h">TRANSFERRABLE SKILLS</div>
+      <ul class="cap-skills cap-skills-grid">
+        <li><span class="skill-name">Leadership &amp; Management</span><span class="skill-desc">Leading multidisciplinary engineering teams, delegating technical work and coordinating project delivery.</span></li>
+        <li><span class="skill-name">Teamwork</span><span class="skill-desc">Collaborating effectively within multidisciplinary teams across university projects and UTS Motorsports.</span></li>
+        <li><span class="skill-name">Systems Thinking</span><span class="skill-desc">Balancing performance, manufacturability, cost and subsystem integration throughout engineering design.</span></li>
+        <li><span class="skill-name">Initiative</span><span class="skill-desc">Proactively improving designs, documentation and engineering processes while owning technical tasks.</span></li>
+      </ul>
     </div>
   </div>
 </section>
