@@ -174,7 +174,7 @@
     color:var(--ink-dim);
     font-size:15px;
     line-height:1.75;
-    max-width:760px;
+    max-width:560px;
     margin:0 0 18px;
   }
   .about-text:last-child{margin-bottom:0;}
@@ -390,6 +390,23 @@
     border-top:1px dashed var(--grid-line-strong);
   }
   .cap li:first-child{border-top:none;}
+  .cap-skills li{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    padding:12px 0;
+  }
+  .cap-skills .skill-name{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.04em;
+    color:var(--ink);
+  }
+  .cap-skills .skill-desc{
+    font-size:12.5px;
+    line-height:1.55;
+    color:var(--ink-dim);
+  }
 
   /* ---------- Contact / signature block ---------- */
   .signature{
@@ -471,7 +488,7 @@
     <nav class="crumbline">
       <a href="#about">About</a>
       <a href="#work">Projects</a>
-      <a href="#capabilities">Capabilities</a>
+      <a href="#capabilities">Skill Set</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -685,44 +702,49 @@
     <div class="section-head">
       <div>
         <div class="section-num">§ 02 — TOOLKIT</div>
-        <h2 class="section-title">Capabilities</h2>
+        <h2 class="section-title">Skill Set</h2>
       </div>
     </div>
     <div class="cap-list">
       <div class="cap">
-        <div class="cap-h">MECHANICAL DESIGN</div>
+        <div class="cap-h">DESIGN &amp; ANALYSIS</div>
         <ul>
-          <li>SolidWorks / Fusion 360</li>
-          <li>GD&amp;T &amp; tolerance stacking</li>
-          <li>FEA &amp; motion simulation</li>
-          <li>DFM for CNC &amp; sheet metal</li>
+          <li>SolidWorks</li>
+          <li>Finite Element Analysis</li>
+          <li>Topology Optimisation</li>
+          <li>Altium</li>
+          <li>LTspice</li>
         </ul>
       </div>
       <div class="cap">
-        <div class="cap-h">ELECTRONICS</div>
+        <div class="cap-h">MANUFACTURING</div>
         <ul>
-          <li>KiCad / Altium PCB design</li>
-          <li>Embedded C / C++ (STM32, ESP32)</li>
-          <li>Sensor integration &amp; signal conditioning</li>
-          <li>Power electronics &amp; motor drivers</li>
+          <li>Lathe &amp; mill</li>
+          <li>Sheet metal fabrication</li>
+          <li>Welding</li>
+          <li>Composite manufacturing</li>
+          <li>Hand soldering &amp; hot plating</li>
+          <li>PCB rework (SOIC, TSSOP, QFP, QFN)</li>
         </ul>
       </div>
       <div class="cap">
-        <div class="cap-h">CONTROLS &amp; SOFTWARE</div>
+        <div class="cap-h">PROGRAMMING &amp; SOFTWARE</div>
         <ul>
-          <li>Closed-loop control (PID, state-space)</li>
-          <li>ROS / real-time systems</li>
-          <li>Python for data &amp; test automation</li>
-          <li>MATLAB / Simulink</li>
+          <li>C / C++ / Python</li>
+          <li>Arduino / STM32</li>
+          <li>ROS2</li>
+          <li>Linux &amp; Windows</li>
+          <li>MATLAB / MathCad</li>
+          <li>MoTeC i2 Pro / VS Code</li>
         </ul>
       </div>
       <div class="cap">
-        <div class="cap-h">FABRICATION</div>
-        <ul>
-          <li>CNC milling &amp; turning</li>
-          <li>3D printing (FDM/SLA)</li>
-          <li>Laser cutting</li>
-          <li>Hand assembly &amp; rework</li>
+        <div class="cap-h">TRANSFERRABLE SKILLS</div>
+        <ul class="cap-skills">
+          <li><span class="skill-name">Leadership &amp; Management</span><span class="skill-desc">Leading multidisciplinary engineering teams, delegating technical work and coordinating project delivery.</span></li>
+          <li><span class="skill-name">Teamwork</span><span class="skill-desc">Collaborating effectively within multidisciplinary teams across university projects and UTS Motorsports.</span></li>
+          <li><span class="skill-name">Systems Thinking</span><span class="skill-desc">Balancing performance, manufacturability, cost and subsystem integration throughout engineering design.</span></li>
+          <li><span class="skill-name">Initiative</span><span class="skill-desc">Proactively improving designs, documentation and engineering processes while owning technical tasks.</span></li>
         </ul>
       </div>
     </div>
