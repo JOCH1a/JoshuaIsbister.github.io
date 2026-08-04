@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embedded Step Tracker Watch — Project Writeup</title>
+<meta name="description" content="Project writeup: Embedded Step Tracker Watch">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1626; --bg-deep:#060d18; --surface:#101f34; --surface-2:#152841;
+    --grid-line: rgba(120,168,209,0.09); --grid-line-strong: rgba(120,168,209,0.18);
+    --ink:#e9eef5; --ink-dim:#93a6bd; --ink-faint:#5c7188;
+    --copper:#c8823c; --copper-bright:#e0a05c;
+    --trace:#5fd7c0; --trace-dim:#3a8f80;
+    --line: rgba(120,168,209,0.28);
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --cond: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important; transition-duration:.01ms !important;}}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/48px 48px,
+      var(--bg);
+    color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  a:focus-visible{outline:2px solid var(--trace); outline-offset:3px;}
+  .sheet{max-width:840px; margin:0 auto; padding:0 28px;}
+
+  .titleblock-wrap{border-bottom:1px solid var(--line); background:linear-gradient(180deg, rgba(16,31,52,0.6), transparent);}
+  .titleblock{display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 0;}
+  .back-link{
+    font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-decoration:none;
+    color:var(--ink-dim); display:inline-flex; align-items:center; gap:8px;
+  }
+  .back-link:hover{color:var(--trace);}
+  .tb-mark{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink-faint);}
+
+  header.proj-head{padding:56px 0 36px; border-bottom:1px solid var(--line);}
+  .proj-eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--copper-bright);
+    display:flex; align-items:center; gap:10px; margin-bottom:16px;
+  }
+  .proj-eyebrow::before{content:''; width:22px; height:1px; background:var(--copper-bright);}
+  h1{
+    font-family:var(--cond); text-transform:uppercase; font-weight:700;
+    font-size:clamp(30px,5vw,50px); line-height:1.02; margin:0 0 18px; letter-spacing:-.01em;
+  }
+  .proj-sub{color:var(--ink-dim); max-width:600px; margin:0 0 24px; font-size:16px;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:.05em; padding:5px 10px;
+    border:1px solid var(--line); color:var(--ink-dim);
+  }
+
+  .specs-strip{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line); margin:32px 0 0;
+  }
+  .specs-strip div{background:var(--bg-deep); padding:16px 18px;}
+  .specs-strip .k{
+    display:block; font-family:var(--mono); font-size:10px; letter-spacing:.1em;
+    color:var(--ink-faint); margin-bottom:6px;
+  }
+  .specs-strip .v{font-family:var(--mono); font-size:15px; color:var(--ink);}
+
+  main{padding:48px 0 40px;}
+  main section{margin-bottom:40px;}
+  h2{
+    font-family:var(--cond); text-transform:uppercase; font-weight:700; font-size:20px;
+    letter-spacing:.02em; color:var(--ink); margin:0 0 14px;
+    padding-bottom:10px; border-bottom:1px solid var(--line);
+  }
+  main p{color:var(--ink-dim); margin:0 0 14px;}
+  main ul{color:var(--ink-dim); padding-left:20px; margin:0;}
+  main li{margin-bottom:8px;}
+
+  .gallery{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:16px;
+  }
+  .gallery .ph{
+    aspect-ratio:4/3; border:1px dashed var(--grid-line-strong); background:var(--bg-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:11px; color:var(--ink-faint); text-align:center; padding:10px;
+  }
+
+  .proj-nav{
+    display:flex; justify-content:space-between; border-top:1px solid var(--line);
+    padding:24px 0; font-family:var(--mono); font-size:12px;
+  }
+  .proj-nav a{text-decoration:none; color:var(--ink-dim);}
+  .proj-nav a:hover{color:var(--trace);}
+
+  footer{
+    border-top:1px solid var(--line); padding:22px 0 40px; font-family:var(--mono);
+    font-size:11px; color:var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+<div class="titleblock-wrap">
+  <div class="sheet titleblock">
+    <a class="back-link" href="index.html">← Back to all projects</a>
+    <div class="tb-mark">PRJ-001 — REV A</div>
+  </div>
+</div>
+
+<header class="proj-head sheet">
+  <div class="proj-eyebrow">EMBEDDED SYSTEMS · FEB–MAY 2026</div>
+  <h1>Embedded Step Tracker Watch</h1>
+  <p class="proj-sub">
+    Designed, developed, assembled and tested a wearable step-tracking device built around an accelerometer and MCU — including the signal chain, power delivery, mechanical enclosure, display, and user interface.
+  </p>
+  <div class="tags">
+    <span class="tag">Altium</span>
+    <span class="tag">STM32</span>
+    <span class="tag">LTspice</span>
+    <span class="tag">Sallen-Key Filter</span>
+  </div>
+
+  <div class="specs-strip">
+    <div><span class="k">PCB</span><span class="v">4-layer, Altium</span></div>
+    <div><span class="k">Filter</span><span class="v">2nd-order Butterworth</span></div>
+    <div><span class="k">Power</span><span class="v">Buck + LDO</span></div>
+    <div><span class="k">Status</span><span class="v">Built</span></div>
+  </div>
+</header>
+
+<main class="sheet">
+  <section>
+    <h2>Overview</h2>
+    <p>A wrist-worn step tracker built end-to-end: from accelerometer signal conditioning through to a finished, wearable enclosure. The brief required every subsystem — sensing, filtering, power, display, and interface — to work together on one board.</p>
+  </section>
+
+  <section>
+    <h2>Design &amp; approach</h2>
+    <ul>
+      <li>Designed a 4-layer PCB in Altium carrying the accelerometer, MCU header, display driver, status indicators, and button interfaces</li>
+      <li>Built a 2nd-order Butterworth active low-pass filter using a Sallen-Key topology to clean the accelerometer signal, simulated in LTspice before committing to hardware</li>
+      <li>Designed onboard power delivery using a buck converter paired with an LDO to supply clean, regulated rails from a single battery input</li>
+      <li>Hand-assembled the board using a mix of through-hole, SMD, and hotplate soldering, then wrote embedded C/C++ on STM32 to read, filter, and display step counts in real time</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <p>A fully assembled, working device — signal chain, power system, and firmware all validated on hardware, housed in a custom mechanical enclosure.</p>
+  </section>
+
+  <section>
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <div class="ph">Add photo /<br>render here</div>
+      <div class="ph">Add photo /<br>render here</div>
+      <div class="ph">Add photo /<br>render here</div>
+    </div>
+  </section>
+</main>
+
+<div class="sheet proj-nav">
+  <a href="index.html">← All projects</a>
+  <a href="project-2.html">Next: Warman Challenge Robot →</a>
+</div>
+
+<footer class="sheet">
+  Edit this page directly — duplicate it for each new project and update the content.
+</footer>
+
+</body>
+</html>
