@@ -1,4 +1,4 @@
-Joshua Isbister — Engineering Portfolio
+## Joshua Isbister — Engineering Portfolio
 
 Personal portfolio site showcasing mechanical and mechatronic engineering projects. Built as static HTML/CSS — no build step, no dependencies beyond a couple of Google Fonts and a CDN QR code library.
 
